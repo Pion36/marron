@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+    {% block content %}
+    <div id='main' class="container">
+      <h2>模擬の板情報</h2>
+      <p>(スマホは横スクロールしてください)</p>
+      <div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Maker Address</th>
+              <th scope="col">売られている通貨</th>
+              <th scope="col">求めている通貨</th>
+              <th scope="col">最大売却量</th>
+              <th scope="col">レート</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in list %}
+            <tr>
+              <td>{{i.maker}}</td>
+              <td>{{i.makerToken}}</td>
+              <td>{{i.takerToken}}</td>
+              <td>{{i.maxMakerAmount}}</td>
+              <td>{{i.takerRate}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+      <h2>取引</h2>
+      <p>買いたい通貨と取引に使う通貨を選択してください。</p>
+      <form method="post">
+        <div class="form-group">
+          <label for="inputTakerAddress">自分のウォレットのアドレス (taker)</label>
+          <input class="form-control" id="inputTakerAddress" name="takerAddress" placeholder="address" required />
+        </div>
+        <div class="form-group">
+          <label for="inputMakerAddress">相手のウォレットのアドレス (maker)</label>
+          <input class="form-control" id="inputMakerAddress" name="makerAddress" placeholder="address" required />
+        </div>
+        <div class="form-row">
+          <div class="form-group col-9">
+            <label for="inputMakerAmount">買う量</label>
+            <input class="form-control" type="number" id="inputMakerAmount" name="makerAmount" placeholder="amount" required />
+          </div>
+          <div class="form-group col-3">
+            <label for="selectCurrency">通貨</label>
+            <select class="form-control" id="selectCurrency" name="makerCurrency" required>
+              <option>BTC</option>
+              <option>ETH</option>
+              <option>XRP</option>
+              <option>BCH</option>
+              <option>LTC</option>
+              <option>ADA</option>
+              <option>NEO</option>
+              <option>XLM</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group col-9">
+            <label for="inputAmount">使う量</label>
+            <input class="form-control" type="number" id="inputAmount" name="takerAmount" placeholder="amount" required />
+          </div>
+          <div class="form-group col-3">
+            <label for="selectCurrency">通貨</label>
+            <select class="form-control" id="selectCurrency" name="takerCurrency" required>
+              <option>BTC</option>
+              <option>ETH</option>
+              <option>XRP</option>
+              <option>BCH</option>
+              <option>LTC</option>
+              <option>ADA</option>
+              <option>NEO</option>
+              <option>XLM</option>
+            </select>
+          </div>
+        </div>
+        <button type="submit" class="btn btn-primary" value="trade" onclick="submitAction('trade')">注文実行</button>
+      </form>
+    </div>
+    {% endblock %}

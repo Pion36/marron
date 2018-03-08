@@ -1,0 +1,15 @@
+footer {
+  margin-top: 32px;
+}
+
+header {
+  background-color: royalblue;
+  color: white;
+  margin-bottom: 32px;
+  padding-bottom: 8px;
+  padding-top: 8px;
+}
+
+.table-responsive {
+  margin-bottom: 32px;
+}
